@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>QuantoSobra</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <style>
+        #Number{
+            width: 99%;
+            height: 500px;
+        }
+        div{
+            float: left;
+        }
+        .card{
+            width: 30%;
+            margin: 5px;
+            
+        }
+        #tarefa1, #tarefa2{
+            height: 545px;
+        }
+        #tarefa3, #tarefa4{
+            width: 35%;
+        }
+        #tarefa4{
+            height: 455px;
+        }
+        textarea{
+            resize: none;
+        }
+    </style>
+</head>
+<body onload="tarefa4();">
+    <div class="card border-dark mb-3">
+        <div class="card-header">Tarefa 1</div>
+            <div class="card-body" id="tarefa1">
+              <p class="card-text"><textarea id="Number" disabled re></textarea></p>
+        </div>
+    </div>
+
+    <div class="card border-dark mb-3" >
+        <div class="card-header">Tarefa 2</div>
+            <div class="card-body" id="tarefa2">
+                <p class="card-text"></p>
+                    <b>TAREFA 2:</b>
+                </p>
+                <p class="card-text">                
+                    <b>A. O que é retornado e qual é o estado da tabela para cada uma das operações abaixo?</b>
+                </p>
+                <ol>
+                    <b><li> GET myapi.com/person?id=1 </b> Joao, 26. Está sendo executado um SELECT</li> 
+                    <b><li> POST myapi.com/person?name=maria&age=30 </b> “No result found”.  Está sendo executado um SELECT</li>
+                    <b><li> GET myapi.com/person?name=maria </b> Maria, 24.  Está sendo executado um SELECT</li>
+                </ol>
+                <p class="card-text">   
+                   <b>B. Existe alguma alteração necessária para que os resultados estejam de acordo com o
+                    comportamento esperado para uma API REST? Se houver, qual é a alteração e qual é o
+                    resultado esperado para cada uma das operações acima?</b>
+                    Sim, no request.method is POST o then dever ser retornado setPersonData(request.queryParams).
+                    Isso faria que a 2) Fosse um insert no Banco de Dados.
+                </p>
+        </div>
+    </div>
+
+    <div class="card border-dark mb-3" id="tarefa3">
+        <div class="card-header">Tarefa 3 (Não funcional)</div>
+            <div class="card-body">
+                <p class="card-text">
+                    <input type="text" id="NumCarros">
+                    <input type="text" id="OrdemLargada">
+                    <input type="text" id="OrdemChegada">
+                    <button onclick="tarefa3()">Calcular</button>
+                </p>
+        </div>
+    </div>
+
+    <div class="card border-dark mb-3" id="tarefa4">
+            <div class="card-header">Tarefa 4</div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <p id="endereco1"></p>
+                        <p id="endereco2"></p>
+                        <p id="endereco3"></p>
+                    </p>
+            </div>
+        </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <script>
+        var i=0;
+            while(i <= 100){
+                    if(i%3 == 0 && i%5 == 0){
+                        document.getElementById("Number").innerHTML = (document.getElementById("Number").textContent + i + " QuantoSobra " + "\n");
+                    }else if(i%5 == 0 ){
+                        document.getElementById("Number").innerHTML = (document.getElementById("Number").textContent + i + " Sobra " + "\n");
+                    }else if(i%3 == 0){
+                        document.getElementById("Number").innerHTML = (document.getElementById("Number").textContent + i + " Quanto " + "\n");
+                    }else{
+                        document.getElementById("Number").innerHTML = (document.getElementById("Number").textContent + i + "\n");
+                    }
+                i++
+            }
+
+        function tarefa3() {
+            
+            var qtdcarros = document.getElementById("NumCarros").value;
+            var largada = document.getElementById("OrdemLargada").value;
+            var chegada = document.getElementById("OrdemChegada").value;               
+            var x;
+            var z;
+            var re = /\B/
+            
+            var la = [largada.split(re)];
+            var ca = [chegada.split(re)];
+            alert(la);
+            alert(ca);
+
+
+            for(x=1;x<=qtdcarros;x++){
+                if(la.length == ca.length){
+                        if((la.indexOf(x) == ca.indexOf(x)) && (la.values(x) == ca.values(x))){
+                            alert('Nada mudou');
+                        }else if((la.indexOf(x) < ca.indexOf(x)) && (la.values(x) < ca.values(x))){
+                            alert('Diminuiu');
+                        }else{
+                            alert('Aumentou');
+                        }
+                    }else{
+                        return false;
+                    } 
+                }
+            }
+        
+        window.onload = function tarefa4() {
+            
+        var regExp = /[\,]|\-[^0-9]|[\.]/;
+
+        var endereco1 = "Rua Marechal Floriano, 405 - segundo andar. CEP 96810-002";
+        var endereco2 = "Rua 7 de setembro, 59, apto 302, CEP 96810-016";
+        var endereco3 = "Rua Vinte e Oito de Setembro, 1997, CEP 96814-200";
+
+
+        var arrey1 = endereco1.split(regExp);
+        var arrey2 = endereco2.split(regExp);
+        var arrey3 = endereco3.split(regExp);
+   
+        document.getElementById("endereco1").innerHTML = arrey1.join("<br>");
+        document.getElementById("endereco2").innerHTML = arrey2.join("<br>");
+        document.getElementById("endereco3").innerHTML = arrey3.join("<br>");
+
+        }
+    </script>
+</body>
+</html>
